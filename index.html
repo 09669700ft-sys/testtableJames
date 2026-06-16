@@ -870,16 +870,30 @@
             btn.innerHTML = '<span>⏳</span> กำลังสร้างรูปภาพ...';
             btn.disabled = true;
 
+            const timetable = document.querySelector('.timetable');
+            const captureArea = document.getElementById('captureArea');
+            const isMobile = window.innerWidth <= 768;
+
+            // On mobile: temporarily show the desktop timetable for capture
+            if (isMobile) {
+                timetable.style.display = 'grid';
+                captureArea.style.background = '#141d2f';
+                captureArea.style.borderRadius = '12px';
+                captureArea.style.border = '1px solid rgba(148,163,184,0.08)';
+                captureArea.style.overflow = 'hidden';
+            }
+
             try {
-                const el = document.getElementById('captureArea');
-                const canvas = await html2canvas(el, {
+                const canvas = await html2canvas(captureArea, {
                     scale: 2,
                     useCORS: true,
                     backgroundColor: '#141d2f',
                     logging: false,
-                    scrollX: -window.scrollX,
-                    scrollY: -window.scrollY,
-                    windowWidth: el.scrollWidth + 40,
+                    scrollX: 0,
+                    scrollY: 0,
+                    width: captureArea.scrollWidth,
+                    height: captureArea.scrollHeight,
+                    windowWidth: Math.max(captureArea.scrollWidth, 1200),
                 });
 
                 canvas.toBlob(blob => {
@@ -887,14 +901,24 @@
                     const a = document.createElement('a');
                     a.href = url;
                     a.download = 'ตารางเรียน_2569_ภาค1.png';
+                    document.body.appendChild(a);
                     a.click();
-                    setTimeout(() => URL.revokeObjectURL(url), 100);
+                    document.body.removeChild(a);
+                    setTimeout(() => URL.revokeObjectURL(url), 200);
                     showToast('ดาวน์โหลดรูปภาพ PNG สำเร็จ!');
                 }, 'image/png');
             } catch (e) {
                 console.error(e);
                 showToast('เกิดข้อผิดพลาด กรุณาลองใหม่');
             } finally {
+                // Restore mobile layout
+                if (isMobile) {
+                    timetable.style.display = '';
+                    captureArea.style.background = '';
+                    captureArea.style.borderRadius = '';
+                    captureArea.style.border = '';
+                    captureArea.style.overflow = '';
+                }
                 btn.innerHTML = orig;
                 btn.disabled = false;
             }
