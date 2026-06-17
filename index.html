@@ -558,6 +558,30 @@
             body { background: #1a1a2e; }
             .page-header { display: none; }
         }
+
+        /* ====== Capturing State for html2canvas ====== */
+        body.is-capturing .mobile-schedule {
+            display: none !important;
+        }
+        body.is-capturing #captureArea {
+            display: block !important;
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: var(--radius) !important;
+            overflow: visible !important;
+            width: 1200px !important;
+            max-width: none !important;
+        }
+        body.is-capturing .scroll-wrapper {
+            overflow: visible !important;
+            width: 100% !important;
+            max-width: none !important;
+        }
+        body.is-capturing .timetable {
+            display: grid !important;
+            width: 1200px !important;
+            min-width: 1200px !important;
+        }
     </style>
 </head>
 <body>
@@ -851,48 +875,29 @@
 
             const captureArea = document.getElementById('captureArea');
             
-            // 1. Create a clone of the captureArea
-            const clone = captureArea.cloneNode(true);
-            clone.id = 'captureAreaClone';
+            // 1. Record the current scroll position
+            const origScrollX = window.scrollX;
+            const origScrollY = window.scrollY;
 
-            // 2. Style the clone to be visible, off-screen, and have desktop size/layout
-            clone.style.position = 'absolute';
-            clone.style.left = '-9999px';
-            clone.style.top = '0';
-            clone.style.width = '1200px'; // fixed high-quality desktop width
-            clone.style.height = 'auto';
-            clone.style.display = 'block';
-            clone.style.background = '#141d2f';
-            clone.style.borderRadius = '12px';
-            clone.style.border = '1px solid rgba(148,163,184,0.08)';
-            clone.style.overflow = 'hidden';
+            // 2. Scroll to the top-left of the page to prevent blank/offset canvas on mobile
+            window.scrollTo(0, 0);
 
-            // Force the grid to display inside the clone, overriding mobile 'display: none'
-            const timetable = clone.querySelector('.timetable');
-            if (timetable) {
-                timetable.style.display = 'grid';
-                timetable.style.width = '100%';
-            }
-
-            const scrollWrapper = clone.querySelector('.scroll-wrapper');
-            if (scrollWrapper) {
-                scrollWrapper.style.overflowX = 'visible';
-                scrollWrapper.style.width = '100%';
-            }
-
-            document.body.appendChild(clone);
+            // 3. Add capturing class to body to force desktop grid layout for html2canvas
+            document.body.classList.add('is-capturing');
 
             try {
-                // Wait a short moment to ensure browser applies styling and layouts the elements
-                await new Promise(resolve => setTimeout(resolve, 150));
+                // Wait a short moment to ensure browser scrolls, reflows, and applies layout styles
+                await new Promise(resolve => setTimeout(resolve, 200));
 
-                const canvas = await html2canvas(clone, {
+                const canvas = await html2canvas(captureArea, {
                     scale: 2,
                     useCORS: true,
                     backgroundColor: '#141d2f',
                     logging: false,
                     width: 1200,
-                    height: clone.offsetHeight
+                    windowWidth: 1200,
+                    scrollX: 0,
+                    scrollY: 0
                 });
 
                 canvas.toBlob(blob => {
@@ -910,10 +915,9 @@
                 console.error(e);
                 showToast('เกิดข้อผิดพลาด กรุณาลองใหม่');
             } finally {
-                // Clean up the clone
-                if (clone.parentNode) {
-                    clone.parentNode.removeChild(clone);
-                }
+                // 4. Restore the original layout and scroll position
+                document.body.classList.remove('is-capturing');
+                window.scrollTo(origScrollX, origScrollY);
                 btn.innerHTML = orig;
                 btn.disabled = false;
             }
