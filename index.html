@@ -877,29 +877,41 @@
             btn.innerHTML = '<span>⏳</span> กำลังสร้างรูปภาพ...';
             btn.disabled = true;
 
-            const captureArea = document.getElementById('captureArea');
+            // Determine if mobile based on screen width
+            const isMobile = window.innerWidth <= 768;
+            
+            // On mobile, capture the whole page-wrapper to get vertical layout
+            // On desktop, capture the whole page-wrapper as well to include the header
+            const targetElement = document.querySelector('.page-wrapper');
             
             // 1. Record the current scroll position
             const origScrollX = window.scrollX;
             const origScrollY = window.scrollY;
 
-            // 2. Scroll to the top-left of the page to prevent blank/offset canvas on mobile
+            // 2. Scroll to the top-left of the page
             window.scrollTo(0, 0);
 
-            // 3. Add capturing class to body to force desktop grid layout for html2canvas
-            document.body.classList.add('is-capturing');
+            // Hide the download button temporarily
+            btn.style.display = 'none';
+
+            // 3. Add capturing class only on desktop to ensure full width grid if needed
+            // But since page-wrapper is responsive, we don't force desktop layout on mobile anymore!
+            if (!isMobile) {
+                document.body.classList.add('is-capturing');
+            }
 
             try {
-                // Wait a short moment to ensure browser scrolls, reflows, and applies layout styles
+                // Wait a short moment
                 await new Promise(resolve => setTimeout(resolve, 200));
 
-                const canvas = await html2canvas(captureArea, {
+                const canvas = await html2canvas(targetElement, {
                     scale: 2,
                     useCORS: true,
-                    backgroundColor: '#141d2f',
+                    backgroundColor: '#0c1222', // Match --bg
                     logging: false,
-                    width: 1200,
-                    windowWidth: 1200,
+                    // If desktop, force 1200px. If mobile, let it be natural width.
+                    width: isMobile ? undefined : 1200,
+                    windowWidth: isMobile ? undefined : 1200,
                     scrollX: 0,
                     scrollY: 0
                 });
@@ -919,8 +931,11 @@
                 console.error(e);
                 showToast('เกิดข้อผิดพลาด กรุณาลองใหม่');
             } finally {
-                // 4. Restore the original layout and scroll position
-                document.body.classList.remove('is-capturing');
+                // 4. Restore everything
+                if (!isMobile) {
+                    document.body.classList.remove('is-capturing');
+                }
+                btn.style.display = '';
                 window.scrollTo(origScrollX, origScrollY);
                 btn.innerHTML = orig;
                 btn.disabled = false;
