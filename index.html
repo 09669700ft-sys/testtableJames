@@ -168,9 +168,9 @@
 
         /* ====== Timetable Grid ====== */
         #captureArea {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
+            background: #141d2f;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.08);
             overflow: hidden;
             animation: fadeIn 0.5s ease 0.1s both;
         }
@@ -179,18 +179,19 @@
             display: grid;
             grid-template-columns: 110px repeat(9, 1fr);
             min-width: 1100px;
+            color: #e2e8f0;
         }
 
         /* Time Header Row */
         .time-cell {
-            background: var(--bg-header);
+            background: #111827;
             padding: 14px 8px;
             text-align: center;
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border);
-            border-right: 1px solid var(--border);
+            color: #94a3b8;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+            border-right: 1px solid rgba(148, 163, 184, 0.08);
             font-family: 'Inter', sans-serif;
         }
 
@@ -198,7 +199,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--text-muted);
+            color: #475569;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,7 +210,7 @@
         }
 
         .time-cell.lunch {
-            color: var(--text-muted);
+            color: #475569;
             position: relative;
         }
 
@@ -218,7 +219,7 @@
             display: block;
             font-size: 9px;
             font-weight: 400;
-            color: var(--text-muted);
+            color: #475569;
             margin-top: 2px;
             letter-spacing: 0.02em;
         }
@@ -231,8 +232,8 @@
             align-items: flex-start;
             justify-content: center;
             gap: 2px;
-            border-bottom: 1px solid var(--border);
-            border-right: 1px solid var(--border);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+            border-right: 1px solid rgba(148, 163, 184, 0.08);
             position: relative;
         }
 
@@ -251,18 +252,18 @@
             opacity: 0.5;
         }
 
-        .day-label.mon .day-th { color: var(--mon-color); }
-        .day-label.tue .day-th { color: var(--tue-color); }
-        .day-label.wed .day-th { color: var(--wed-color); }
-        .day-label.thu .day-th { color: var(--thu-color); }
-        .day-label.fri .day-th { color: var(--fri-color); }
+        .day-label.mon .day-th { color: #f97316; }
+        .day-label.tue .day-th { color: #f43f5e; }
+        .day-label.wed .day-th { color: #22c55e; }
+        .day-label.thu .day-th { color: #eab308; }
+        .day-label.fri .day-th { color: #06b6d4; }
 
         .day-label.wed .day-th::after {
             content: '';
             display: inline-block;
             width: 6px;
             height: 6px;
-            background: var(--wed-color);
+            background: #22c55e;
             border-radius: 50%;
             margin-left: 6px;
             vertical-align: middle;
@@ -274,21 +275,21 @@
             display: grid;
             grid-template-columns: repeat(9, 1fr);
             position: relative;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
             min-height: 100px;
         }
 
         .slot-bg {
-            border-right: 1px solid var(--border);
+            border-right: 1px solid rgba(148, 163, 184, 0.08);
             min-height: 100px;
         }
 
         .slot-bg:last-child { border-right: none; }
 
         .slot-bg.lunch {
-            background: var(--lunch-bg);
-            border-left: 1px dashed var(--lunch-border);
-            border-right: 1px dashed var(--lunch-border);
+            background: rgba(99, 102, 241, 0.06);
+            border-left: 1px dashed rgba(99, 102, 241, 0.15);
+            border-right: 1px dashed rgba(99, 102, 241, 0.15);
         }
 
         /* Course Cards */
@@ -296,13 +297,13 @@
             position: absolute;
             top: 8px;
             bottom: 8px;
-            border-radius: var(--radius-sm);
+            border-radius: 8px;
             padding: 12px 14px;
             display: flex;
             flex-direction: column;
             gap: 6px;
             cursor: default;
-            transition: all var(--transition);
+            transition: all 0.25s ease;
             overflow: hidden;
             z-index: 2;
         }
@@ -312,12 +313,12 @@
             z-index: 5;
         }
 
-        .course-card.c1 { background: var(--course-1); border: 1px solid var(--course-1-border); }
-        .course-card.c2 { background: var(--course-2); border: 1px solid var(--course-2-border); }
-        .course-card.c3 { background: var(--course-3); border: 1px solid var(--course-3-border); }
-        .course-card.c4 { background: var(--course-4); border: 1px solid var(--course-4-border); }
-        .course-card.c5 { background: var(--course-5); border: 1px solid var(--course-5-border); }
-        .course-card.c6 { background: var(--course-6); border: 1px solid var(--course-6-border); }
+        .course-card.c1 { background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); }
+        .course-card.c2 { background: rgba(236, 72, 153, 0.10); border: 1px solid rgba(236, 72, 153, 0.3); }
+        .course-card.c3 { background: rgba(34, 211, 238, 0.10); border: 1px solid rgba(34, 211, 238, 0.3); }
+        .course-card.c4 { background: rgba(251, 191, 36, 0.10); border: 1px solid rgba(251, 191, 36, 0.3); }
+        .course-card.c5 { background: rgba(52, 211, 153, 0.10); border: 1px solid rgba(52, 211, 153, 0.3); }
+        .course-card.c6 { background: rgba(249, 115, 22, 0.10); border: 1px solid rgba(249, 115, 22, 0.3); }
 
         .course-card:hover.c1 { box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2); }
         .course-card:hover.c2 { box-shadow: 0 4px 20px rgba(236, 72, 153, 0.2); }
@@ -340,12 +341,12 @@
             letter-spacing: 0.02em;
         }
 
-        .c1 .course-code { color: var(--course-1-accent); }
-        .c2 .course-code { color: var(--course-2-accent); }
-        .c3 .course-code { color: var(--course-3-accent); }
-        .c4 .course-code { color: var(--course-4-accent); }
-        .c5 .course-code { color: var(--course-5-accent); }
-        .c6 .course-code { color: var(--course-6-accent); }
+        .c1 .course-code { color: #818cf8; }
+        .c2 .course-code { color: #f472b6; }
+        .c3 .course-code { color: #22d3ee; }
+        .c4 .course-code { color: #fbbf24; }
+        .c5 .course-code { color: #34d399; }
+        .c6 .course-code { color: #fb923c; }
 
         .sec-badge {
             font-size: 10px;
@@ -354,7 +355,7 @@
             border-radius: 100px;
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.08);
-            color: var(--text-secondary);
+            color: #94a3b8;
             white-space: nowrap;
             flex-shrink: 0;
         }
@@ -375,7 +376,7 @@
 
         .course-detail span {
             font-size: 11px;
-            color: var(--text-secondary);
+            color: #94a3b8;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -565,12 +566,15 @@
         }
         body.is-capturing #captureArea {
             display: block !important;
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: var(--radius) !important;
+            background: #141d2f !important;
+            border: 1px solid rgba(148, 163, 184, 0.08) !important;
+            border-radius: 12px !important;
             overflow: visible !important;
             width: 1200px !important;
             max-width: none !important;
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
         }
         body.is-capturing .scroll-wrapper {
             overflow: visible !important;
