@@ -182,11 +182,7 @@
         }
 
         /* Time Header Row */
-        .time-header {
-            display: contents;
-        }
-
-        .time-header .cell {
+        .time-cell {
             background: var(--bg-header);
             padding: 14px 8px;
             text-align: center;
@@ -198,7 +194,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .time-header .cell:first-child {
+        .time-cell:first-child {
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -208,16 +204,16 @@
             justify-content: center;
         }
 
-        .time-header .cell:last-child {
+        .time-cell.last-header {
             border-right: none;
         }
 
-        .time-header .cell.lunch {
+        .time-cell.lunch {
             color: var(--text-muted);
             position: relative;
         }
 
-        .time-header .cell.lunch::after {
+        .time-cell.lunch::after {
             content: 'พักเที่ยง';
             display: block;
             font-size: 9px;
@@ -225,11 +221,6 @@
             color: var(--text-muted);
             margin-top: 2px;
             letter-spacing: 0.02em;
-        }
-
-        /* Day Rows */
-        .day-row {
-            display: contents;
         }
 
         .day-label {
@@ -594,188 +585,176 @@
             <div class="scroll-wrapper">
                 <div class="timetable">
                     <!-- Time Header -->
-                    <div class="time-header">
-                        <div class="cell">วัน / เวลา</div>
-                        <div class="cell">08:00 - 09:00</div>
-                        <div class="cell">09:00 - 10:00</div>
-                        <div class="cell">10:00 - 11:00</div>
-                        <div class="cell">11:00 - 12:00</div>
-                        <div class="cell lunch">12:00 - 13:00</div>
-                        <div class="cell">13:00 - 14:00</div>
-                        <div class="cell">14:00 - 15:00</div>
-                        <div class="cell">15:00 - 16:00</div>
-                        <div class="cell">16:00 - 17:00</div>
-                    </div>
+                    <div class="time-cell">วัน / เวลา</div>
+                    <div class="time-cell">08:00 - 09:00</div>
+                    <div class="time-cell">09:00 - 10:00</div>
+                    <div class="time-cell">10:00 - 11:00</div>
+                    <div class="time-cell">11:00 - 12:00</div>
+                    <div class="time-cell lunch">12:00 - 13:00</div>
+                    <div class="time-cell">13:00 - 14:00</div>
+                    <div class="time-cell">14:00 - 15:00</div>
+                    <div class="time-cell">15:00 - 16:00</div>
+                    <div class="time-cell last-header">16:00 - 17:00</div>
 
                     <!-- จันทร์ Monday -->
-                    <div class="day-row">
-                        <div class="day-label mon">
-                            <span class="day-th">จันทร์</span>
-                            <span class="day-en">Monday</span>
-                        </div>
-                        <div class="day-slots">
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg lunch"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
+                    <div class="day-label mon">
+                        <span class="day-th">จันทร์</span>
+                        <span class="day-en">Monday</span>
+                    </div>
+                    <div class="day-slots">
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg lunch"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
 
-                            <!-- SCIT303: 08:00-12:00 -->
-                            <div class="course-card c1 mon-course-1">
-                                <div class="course-top">
-                                    <span class="course-code">SCIT303</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">การแสดงข้อมูลด้วยภาพ</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง 24207 / ชั้น 2 / ตึก LC</span>
-                                    <span><span class="icon">👤</span> อ.ศุภกัญจ์ นันทะวรการ</span>
-                                </div>
+                        <!-- SCIT303: 08:00-12:00 -->
+                        <div class="course-card c1 mon-course-1">
+                            <div class="course-top">
+                                <span class="course-code">SCIT303</span>
+                                <span class="sec-badge">Sec 01</span>
                             </div>
+                            <div class="course-name">การแสดงข้อมูลด้วยภาพ</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง 24207 / ชั้น 2 / ตึก LC</span>
+                                <span><span class="icon">👤</span> อ.ศุภกัญจ์ นันทะวรการ</span>
+                            </div>
+                        </div>
 
-                            <!-- GESO102: 13:00-16:00 -->
-                            <div class="course-card c6 mon-course-2">
-                                <div class="course-top">
-                                    <span class="course-code">GESO102</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">การจัดการเพื่อคุณภาพชีวิต</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง IT107 / ชั้น 1 / ตึก IT</span>
-                                    <span><span class="icon">👤</span> อ.ดร.ชยากร คัยนันท์</span>
-                                </div>
+                        <!-- GESO102: 13:00-16:00 -->
+                        <div class="course-card c6 mon-course-2">
+                            <div class="course-top">
+                                <span class="course-code">GESO102</span>
+                                <span class="sec-badge">Sec 01</span>
+                            </div>
+                            <div class="course-name">การจัดการเพื่อคุณภาพชีวิต</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง IT107 / ชั้น 1 / ตึก IT</span>
+                                <span><span class="icon">👤</span> อ.ดร.ชยากร คัยนันท์</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- อังคาร Tuesday -->
-                    <div class="day-row">
-                        <div class="day-label tue">
-                            <span class="day-th">อังคาร</span>
-                            <span class="day-en">Tuesday</span>
-                        </div>
-                        <div class="day-slots">
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg lunch"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
+                    <div class="day-label tue">
+                        <span class="day-th">อังคาร</span>
+                        <span class="day-en">Tuesday</span>
+                    </div>
+                    <div class="day-slots">
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg lunch"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
 
-                            <!-- GEHU104: 09:00-12:00 -->
-                            <div class="course-card c2 tue-course-1">
-                                <div class="course-top">
-                                    <span class="course-code">GEHU104</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">สารสนเทศเพื่อการเรียนรู้</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง 924 / ชั้น 2 / ตึก 9</span>
-                                    <span><span class="icon">👤</span> อ.มานุวัชร์ ปีรามณ์</span>
-                                </div>
+                        <!-- GEHU104: 09:00-12:00 -->
+                        <div class="course-card c2 tue-course-1">
+                            <div class="course-top">
+                                <span class="course-code">GEHU104</span>
+                                <span class="sec-badge">Sec 01</span>
+                            </div>
+                            <div class="course-name">สารสนเทศเพื่อการเรียนรู้</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง 924 / ชั้น 2 / ตึก 9</span>
+                                <span><span class="icon">👤</span> อ.มานุวัชร์ ปีรามณ์</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- พุธ Wednesday -->
-                    <div class="day-row">
-                        <div class="day-label wed">
-                            <span class="day-th">พุธ</span>
-                            <span class="day-en">Wednesday</span>
-                        </div>
-                        <div class="day-slots">
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg lunch"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                        </div>
+                    <div class="day-label wed">
+                        <span class="day-th">พุธ</span>
+                        <span class="day-en">Wednesday</span>
+                    </div>
+                    <div class="day-slots">
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg lunch"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
                     </div>
 
                     <!-- พฤหัสบดี Thursday -->
-                    <div class="day-row">
-                        <div class="day-label thu">
-                            <span class="day-th">พฤหัสบดี</span>
-                            <span class="day-en">Thursday</span>
-                        </div>
-                        <div class="day-slots">
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg lunch"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
+                    <div class="day-label thu">
+                        <span class="day-th">พฤหัสบดี</span>
+                        <span class="day-en">Thursday</span>
+                    </div>
+                    <div class="day-slots">
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg lunch"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
 
-                            <!-- SCIT104: 09:00-12:00 -->
-                            <div class="course-card c4 thu-course-1">
-                                <div class="course-top">
-                                    <span class="course-code">SCIT104</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">การจัดการเทคโนโลยีสารสนเทศในองค์กรสมัยใหม่</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง 24308 / ชั้น 3 / ตึก LC</span>
-                                    <span><span class="icon">👤</span> ผศ.ดร.อาจันทร์ สิงห์นิ่ม</span>
-                                </div>
+                        <!-- SCIT104: 09:00-12:00 -->
+                        <div class="course-card c4 thu-course-1">
+                            <div class="course-top">
+                                <span class="course-code">SCIT104</span>
+                                <span class="sec-badge">Sec 01</span>
                             </div>
+                            <div class="course-name">การจัดการเทคโนโลยีสารสนเทศในองค์กรสมัยใหม่</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง 24308 / ชั้น 3 / ตึก LC</span>
+                                <span><span class="icon">👤</span> ผศ.ดร.อาจันทร์ สิงห์นิ่ม</span>
+                            </div>
+                        </div>
 
-                            <!-- SCIT207: 13:00-17:00 -->
-                            <div class="course-card c5 thu-course-2">
-                                <div class="course-top">
-                                    <span class="course-code">SCIT207</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">เทคโนโลยีกลุ่มเมฆเบื้องต้นและการวิเคราะห์ข้อมูลขนาดใหญ่</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง 24206 / ชั้น 2 / ตึก LC</span>
-                                    <span><span class="icon">👤</span> ผศ.เจตพล ปราณีตพลกรัง</span>
-                                </div>
+                        <!-- SCIT207: 13:00-17:00 -->
+                        <div class="course-card c5 thu-course-2">
+                            <div class="course-top">
+                                <span class="course-code">SCIT207</span>
+                                <span class="sec-badge">Sec 01</span>
+                            </div>
+                            <div class="course-name">เทคโนโลยีกลุ่มเมฆเบื้องต้นและการวิเคราะห์ข้อมูลขนาดใหญ่</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง 24206 / ชั้น 2 / ตึก LC</span>
+                                <span><span class="icon">👤</span> ผศ.เจตพล ปราณีตพลกรัง</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- ศุกร์ Friday -->
-                    <div class="day-row">
-                        <div class="day-label fri">
-                            <span class="day-th">ศุกร์</span>
-                            <span class="day-en">Friday</span>
-                        </div>
-                        <div class="day-slots">
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg lunch"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
-                            <div class="slot-bg"></div>
+                    <div class="day-label fri">
+                        <span class="day-th">ศุกร์</span>
+                        <span class="day-en">Friday</span>
+                    </div>
+                    <div class="day-slots">
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg lunch"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
+                        <div class="slot-bg"></div>
 
-                            <!-- SCCS401: 09:00-12:00 -->
-                            <div class="course-card c3 fri-course-1">
-                                <div class="course-top">
-                                    <span class="course-code">SCCS401</span>
-                                    <span class="sec-badge">Sec 01</span>
-                                </div>
-                                <div class="course-name">โครงสร้างดิสครีต</div>
-                                <div class="course-detail">
-                                    <span><span class="icon">📍</span> ห้อง 24209 / ชั้น 2 / ตึก LC</span>
-                                    <span><span class="icon">👤</span> อ.ศุภนันท์ ศรีเจริญ</span>
-                                </div>
+                        <!-- SCCS401: 09:00-12:00 -->
+                        <div class="course-card c3 fri-course-1">
+                            <div class="course-top">
+                                <span class="course-code">SCCS401</span>
+                                <span class="sec-badge">Sec 01</span>
+                            </div>
+                            <div class="course-name">โครงสร้างดิสครีต</div>
+                            <div class="course-detail">
+                                <span><span class="icon">📍</span> ห้อง 24209 / ชั้น 2 / ตึก LC</span>
+                                <span><span class="icon">👤</span> อ.ศุภนันท์ ศรีเจริญ</span>
                             </div>
                         </div>
                     </div>
@@ -870,30 +849,50 @@
             btn.innerHTML = '<span>⏳</span> กำลังสร้างรูปภาพ...';
             btn.disabled = true;
 
-            const timetable = document.querySelector('.timetable');
             const captureArea = document.getElementById('captureArea');
-            const isMobile = window.innerWidth <= 768;
+            
+            // 1. Create a clone of the captureArea
+            const clone = captureArea.cloneNode(true);
+            clone.id = 'captureAreaClone';
 
-            // On mobile: temporarily show the desktop timetable for capture
-            if (isMobile) {
+            // 2. Style the clone to be visible, off-screen, and have desktop size/layout
+            clone.style.position = 'absolute';
+            clone.style.left = '-9999px';
+            clone.style.top = '0';
+            clone.style.width = '1200px'; // fixed high-quality desktop width
+            clone.style.height = 'auto';
+            clone.style.display = 'block';
+            clone.style.background = '#141d2f';
+            clone.style.borderRadius = '12px';
+            clone.style.border = '1px solid rgba(148,163,184,0.08)';
+            clone.style.overflow = 'hidden';
+
+            // Force the grid to display inside the clone, overriding mobile 'display: none'
+            const timetable = clone.querySelector('.timetable');
+            if (timetable) {
                 timetable.style.display = 'grid';
-                captureArea.style.background = '#141d2f';
-                captureArea.style.borderRadius = '12px';
-                captureArea.style.border = '1px solid rgba(148,163,184,0.08)';
-                captureArea.style.overflow = 'hidden';
+                timetable.style.width = '100%';
             }
 
+            const scrollWrapper = clone.querySelector('.scroll-wrapper');
+            if (scrollWrapper) {
+                scrollWrapper.style.overflowX = 'visible';
+                scrollWrapper.style.width = '100%';
+            }
+
+            document.body.appendChild(clone);
+
             try {
-                const canvas = await html2canvas(captureArea, {
+                // Wait a short moment to ensure browser applies styling and layouts the elements
+                await new Promise(resolve => setTimeout(resolve, 150));
+
+                const canvas = await html2canvas(clone, {
                     scale: 2,
                     useCORS: true,
                     backgroundColor: '#141d2f',
                     logging: false,
-                    scrollX: 0,
-                    scrollY: 0,
-                    width: captureArea.scrollWidth,
-                    height: captureArea.scrollHeight,
-                    windowWidth: Math.max(captureArea.scrollWidth, 1200),
+                    width: 1200,
+                    height: clone.offsetHeight
                 });
 
                 canvas.toBlob(blob => {
@@ -911,13 +910,9 @@
                 console.error(e);
                 showToast('เกิดข้อผิดพลาด กรุณาลองใหม่');
             } finally {
-                // Restore mobile layout
-                if (isMobile) {
-                    timetable.style.display = '';
-                    captureArea.style.background = '';
-                    captureArea.style.borderRadius = '';
-                    captureArea.style.border = '';
-                    captureArea.style.overflow = '';
+                // Clean up the clone
+                if (clone.parentNode) {
+                    clone.parentNode.removeChild(clone);
                 }
                 btn.innerHTML = orig;
                 btn.disabled = false;
